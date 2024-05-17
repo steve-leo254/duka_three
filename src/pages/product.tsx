@@ -11,7 +11,7 @@ interface Product {
   image_url: string;
 }
 
-const Products: React.FC = () => {
+const product: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const tableRef = useRef<HTMLTableElement>(null);
 
@@ -61,4 +61,4 @@ const Products: React.FC = () => {
   );
 };
 
-export default Products;
+export default product;

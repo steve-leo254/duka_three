@@ -11,7 +11,7 @@ interface Sale {
     customer_id: number;
 }
 
-const SalesTable: React.FC = () => {
+const sale: React.FC = () => {
     const [sales, setSales] = useState<Sale[]>([]);
     const tableRef = useRef<HTMLTableElement>(null);
     useEffect(() => {
@@ -56,4 +56,4 @@ const SalesTable: React.FC = () => {
     );
 };
 
-export default SalesTable;
+export default sale;

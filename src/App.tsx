@@ -1,31 +1,32 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
-import Product from './pages/Product';
+import Product from './pages/product';
 import Register from './pages/register';
 import Login from './pages/login';
 import Layout from './components/layout';
 import Home from './pages/home';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import PrivateRoutes from './components/protectedRoute';
-import LineAndBar from './pages/chartjs';
-import sale from './pages/sale';
-
+import Sale from './pages/sale';
+import Sidebar from './pages/sidebar';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<CreateAcount />}></Route>
+      <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoutes />}>
-        <Route path='/product' element={<product />}></Route>
-        <Route path='/layout' element={<layout />}></Route>
-        <Route path='/dashboard' element={<home />}></Route>
-        <Route path='/sales' element={ <sale />}/>
-        <Route path='/customer' element={ <Customer />}/>
-
+        <Route path="*" element={<Layout />}/> 
+        <Route index element={<Home />} />
+        <Route path='product' element={<Product />}/>
+        <Route path='layout' element={<Layout />}/>
+        <Route path='dashboard' element={<Dashboard />}/>
+        <Route path='sale' element={ <Sale />}/>
+        <Route path="sidebar" element={<Sidebar />} />
       </Route>
-      <Route path='/linebar' element={ <LineAndBar />}/>
+      <Route path="/register" element={<Register />} />
     </Routes>
-  )
-
+  );
 }
-export default App
+
+export default App;

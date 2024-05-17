@@ -1,23 +1,22 @@
-import { useState } from 'react'
-
-import Header from './Header'
-import sidebar from './sidebar'
-import dashboard from './dashboard'
+import React, { useState } from 'react';
+import Header from './header'; 
+import Sidebar from './sidebar'; 
+import Dashboard from './dashboard';
 
 function Home() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
 
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
+  const openSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
 
   return (
-    <div className='grid-container'>
-      <Header OpenSidebar={OpenSidebar}/>
-      <sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <dashboard />
+    <div className="grid-container">
+      <Header OpenSidebar={openSidebar} />
+      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={openSidebar} />
+      <Dashboard />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

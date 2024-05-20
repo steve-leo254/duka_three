@@ -7,7 +7,8 @@ import {
   BsPeopleFill,
   BsListCheck,
   BsMenuButtonWideFill,
-  BsFillGearFill
+  BsFillGearFill,
+  BsKey
 } from 'react-icons/bs';
 
 interface SidebarProps {
@@ -27,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ openSidebarToggle, OpenSidebar }) => 
 
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
-          <a href="#">
+          <a href="/dashboard">
             <BsGrid1X2Fill className='icon'/> Dashboard
           </a>
         </li>
@@ -47,18 +48,18 @@ const Sidebar: React.FC<SidebarProps> = ({ openSidebarToggle, OpenSidebar }) => 
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="/customer">
-            <BsPeopleFill className='icon'/> Customers
+          <a href="/about">
+            <BsPeopleFill className='icon'/> About
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="">
-            <BsListCheck className='icon'/> Inventory
+          <a href="/login">
+            <BsKey className='icon'/> Login
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="">
-            <BsMenuButtonWideFill className='icon'/> Reports
+          <a href="/register">
+            <BsMenuButtonWideFill className='icon'/> Sign-in
           </a>
         </li>
         <li className='sidebar-list-item'>

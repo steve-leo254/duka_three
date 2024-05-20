@@ -39,7 +39,7 @@ const product: React.FC = () => {
               <th>Name</th>
               <th>Quantity</th>
               <th>Price</th>
-              <th>Image</th>
+              {/* <th>Image</th> */}
             </tr>
           </thead>
           <tbody>
@@ -49,9 +49,9 @@ const product: React.FC = () => {
                 <td>{product.product_name}</td>
                 <td>{product.product_quantity}</td>
                 <td>$ {product.product_price}</td>
-                <td>
+                {/* <td>
                   <img src={product.image_url} alt={`Product ${product.id}`} style={{ width: '200px', height: '80px',objectFit:'contain' }} className="img-fluid" />
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

@@ -6,7 +6,7 @@ interface Product {
     product_name: string;
     product_price: number;
     product_quantity: number;
-    image_url?: string;
+    ima
 }
 
 export default function AddProducts() {

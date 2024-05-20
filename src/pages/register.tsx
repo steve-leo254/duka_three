@@ -20,7 +20,7 @@ const Register = () => {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
-            const apiUrl = "http://127.0.0.1:5000/register";
+            const apiUrl = "http://127.0.0.1:8000/register";
             const response = await axios.post(apiUrl, formData, {
                 headers: {
                     "Content-Type": "application/json"

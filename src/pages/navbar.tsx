@@ -5,7 +5,6 @@ import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
   BsPeopleFill,
-  BsListCheck,
   BsMenuButtonWideFill,
   BsFillGearFill,
   BsKey
@@ -26,14 +25,14 @@ const Sidebar: React.FC<SidebarProps> = ({ openSidebarToggle, OpenSidebar }) => 
         <span className='icon close_icon' onClick={OpenSidebar}>X</span>
       </div>
 
-      <ul className='sidebar-list'>
+      <ul className='sidebar-list '>
         <li className='sidebar-list-item'>
           <a href="/dashboard">
             <BsGrid1X2Fill className='icon'/> Dashboard
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="/products">
+          <a href="/product">
             <BsFillArchiveFill className='icon'/> Products
           </a>
         </li>

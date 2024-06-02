@@ -1,24 +1,31 @@
 import axios from 'axios';
 import $ from 'jquery';
-import 'datatables.net';
+import 'datatables.net'
 import React, { useState, useEffect, useRef } from 'react';
 
 interface Product {
   id: number;
-  product_name: string;
-  product_quantity: number;
-  product_price: number;
+  name: string;
+  stock_quantity: number;
+  price: number;
+  cost: number
   image_url: string;
 }
 
-const product: React.FC = () => {
+const productlist: React.FC = () => { 
   const [products, setProducts] = useState<Product[]>([]);
   const tableRef = useRef<HTMLTableElement>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<Product[]>('http://127.0.0.1:8000/products');
+        const token =localStorage.getItem("token");
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
+        const response = await axios.get<Product[]>('http://127.0.0.1:8000/products', { headers });
+        console.log("kiuuuuuuuu",response)
         setProducts(response.data);
         $(tableRef.current!).DataTable(); 
       } catch (error) {
@@ -39,19 +46,21 @@ const product: React.FC = () => {
               <th>Name</th>
               <th>Quantity</th>
               <th>Price</th>
-              {/* <th>Image</th> */}
+              <th>cost</th>
+              <th>Image</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product.id}>
                 <td>{product.id}</td>
-                <td>{product.product_name}</td>
-                <td>{product.product_quantity}</td>
-                <td>$ {product.product_price}</td>
-                {/* <td>
+                <td>{product.name}</td>
+                <td>{product.stock_quantity}</td>
+                <td>${product.price}</td>
+                <td>${product.cost}</td>
+                <td>
                   <img src={product.image_url} alt={`Product ${product.id}`} style={{ width: '200px', height: '80px',objectFit:'contain' }} className="img-fluid" />
-                </td> */}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -61,4 +70,4 @@ const product: React.FC = () => {
   );
 };
 
-export default product;
+export default productlist;

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Product from './pages/product';
+import Productlist from './pages/product';
 // import Register from './pages/register';
 import Login from './pages/login';
 import Layout from './components/layout';
@@ -8,8 +8,10 @@ import Home from './pages/home';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import PrivateRoutes from './components/protectedRoute';
 import Sale from './pages/sale';
-import Sidebar from './pages/sidebar';
+import Sidebar from './pages/navbar';
 import Dashboard from './pages/dashboard';
+
+
 
 function App() {
   return (
@@ -18,11 +20,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PrivateRoutes />}>
           <Route index element={<Home />} />
-          <Route path='product' element={<Product />}/>
+          <Route path='product' element={<Productlist />}/>
           <Route path='layout' element={<Layout />}/>
           <Route path='dashboard' element={<Dashboard />}/>
           <Route path='sale' element={ <Sale />}/>
-          <Route path="sidebar" element={<Sidebar />} />
+          <Route path="navbar" element={<Sidebar />} />
         </Route>
         {/* <Route path="/register" element={<Register />} /> */}
       </Routes>

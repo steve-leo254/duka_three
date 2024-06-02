@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ OpenSidebar }) => {
       <div className='menu-icon'>
         <BsSearch className='icon' onClick={() => OpenSidebar()} /> {/* Example usage */}
       </div>
-      <div className='header-left'>
+      <div className='header-right'>
         <BsSearch className='icon' />
       </div>
       <div className='header-right'>

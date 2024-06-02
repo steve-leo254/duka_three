@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './header'; 
-import Sidebar from './sidebar'; 
+import Sidebar from './navbar'; 
 import Dashboard from './dashboard';
 
 function Home() {

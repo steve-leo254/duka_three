@@ -32,7 +32,7 @@ const login: React.FC = () => {
     };
     try {
       // const apiUrl = "http://127.0.0.1:5000/login";
-      const apiUrl = "http://127.0.0.1:8000/login";
+      const apiUrl = "http://161.35.148.255:8000/login";
       const response = await axios.post(apiUrl, formContent, {
         headers: {
           "Content-Type": "application/json",

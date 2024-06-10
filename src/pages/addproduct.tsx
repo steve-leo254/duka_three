@@ -9,7 +9,7 @@ interface Product {
   image_url?: string;
 }
 
-export default function addproduct() {
+export default function Addproduct() {
   const [name, setProductName] = useState("");
   const [price, setProductPrice] = useState(0);
   const [stock_quantity, setProductQuantity] = useState(0);

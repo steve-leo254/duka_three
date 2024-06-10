@@ -66,6 +66,7 @@ const productlist: React.FC = () => {
           </tbody>
         </table>
       </div>
+      {/* <img  src="C:\Users\ADMIN\users_fastapi\default\path\to\uploads\1.jpg"></img> */}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Home from './pages/home';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import PrivateRoutes from './components/protectedRoute';
 import Sale from './pages/sale';
+import Addproduct from './pages/addproduct';
 import Sidebar from './pages/navbar';
 import Dashboard from './pages/dashboard';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PrivateRoutes />}>
           <Route index element={<Home />} />
+          <Route path='addproduct' element={<Addproduct />}/>
           <Route path='product' element={<Productlist />}/>
           <Route path='layout' element={<Layout />}/>
           <Route path='dashboard' element={<Dashboard />}/>

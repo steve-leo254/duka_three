@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import UseGoogleLogin from "../components/GoogleLogin";
 import { Link } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 interface AuthType {
   user_name: string;
@@ -22,7 +19,7 @@ const login: React.FC = () => {
   // const [email, setEmail] = useState("");
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -31,7 +28,7 @@ const login: React.FC = () => {
       user_password: password,
     };
     try {
-      
+      // const apiUrl = "http://127.0.0.1:5000/login";
       const apiUrl = "http://161.35.148.255:8000/login";
       const response = await axios.post(apiUrl, formContent, {
         headers: {
@@ -42,7 +39,8 @@ const login: React.FC = () => {
       const responseData: ResponseData = response.data;
       console.log("test", responseData);
       localStorage.setItem("token", responseData.access_token);
-      localStorage.setItem("isLoggedIn", true.toString()); 
+      localStorage.setItem("isLoggedIn", true.toString()); //  login status to local storage
+      setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -51,7 +49,6 @@ const login: React.FC = () => {
   return (
     <>
       <main className="main" id="top">
-        {/* <ToastContainer /> */}
         <section className="text-center py-0">
           <div
             className="bg-holder overlay overlay-2"

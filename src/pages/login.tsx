@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import UseGoogleLogin from "../components/GoogleLogin";
 import { Link } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 interface AuthType {
   user_name: string;
-  // email: string;
   user_password: string;
 }
 
@@ -19,62 +15,50 @@ interface ResponseData {
 const login: React.FC = () => {
   const navigate = useNavigate();
 
-  // const [email, setEmail] = useState("");
-  const [username, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!username ||!password) {
+      alert("Please fill in both username and password.");
+      return;
+    }
+
     let formContent: AuthType = {
       user_name: username,
       user_password: password,
     };
+
     try {
-      
       const apiUrl = "http://161.35.148.255:8000/login";
       const response = await axios.post(apiUrl, formContent, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log("Done.", response.data);
+
       const responseData: ResponseData = response.data;
-      console.log("test", responseData);
       localStorage.setItem("token", responseData.access_token);
-      localStorage.setItem("isLoggedIn", true.toString()); 
+      localStorage.setItem("isLoggedIn", "true");
       navigate("/");
     } catch (error) {
       console.error(error);
+      // Optionally, show an error message to the user
     }
   };
+
   return (
     <>
       <main className="main" id="top">
-        {/* <ToastContainer /> */}
         <section className="text-center py-0">
-          <div
-            className="bg-holder overlay overlay-2"
-            style={{ backgroundImage: "url(src/assets/images/header-5.jpg)" }}
-          ></div>
           <div className="container">
             <div className="row min-vh-100 align-items-center">
-              <div
-                className="col-md-8 col-lg-5 mx-auto"
-                data-zanim-timeline="{}"
-                data-zanim-trigger="scroll"
-              >
-                <div className="mb-5" data-zanim-xs='{"delay":0,"duration":1}'>
-                  <a href="../index.html">
-                    <img src="src/assets/images/logo-light.png" alt="logo" />
-                  </a>
-                </div>
-                <div
-                  className="card"
-                  data-zanim-xs='{"delay":0.1,"duration":1}'
-                >
+              <div className="col-md-8 col-lg-5 mx-auto">
+                <div className="card">
                   <div className="card-body p-md-5">
-                    <h4 className="text-uppercase fs-0 fs-md-1">login</h4>
+                    <h4 className="text-uppercase fs-0 fs-md-1">Login</h4>
                     <form onSubmit={handleSubmit} className="text-start mt-4">
                       <div className="row align-items-center">
                         <div className="col-12">
@@ -84,11 +68,10 @@ const login: React.FC = () => {
                             </div>
                             <input
                               className="form-control"
-                              // type="email"
-                              placeholder="Email or username"
+                              placeholder="Username"
                               aria-label="Text input with dropdown button"
                               value={username}
-                              onChange={(e) => setEmail(e.target.value)}
+                              onChange={(e) => setUsername(e.target.value)}
                             />
                           </div>
                         </div>
@@ -99,7 +82,7 @@ const login: React.FC = () => {
                             </div>
                             <input
                               className="form-control"
-                              type="Password"
+                              type="password"
                               placeholder="Password"
                               aria-label="Text input with dropdown button"
                               value={password}
@@ -123,25 +106,18 @@ const login: React.FC = () => {
                           </div>
                         </div>
                         <div className="col-6 mt-2 mt-sm-3">
-                          <button
-                            className="btn btn-primary w-100"
-                            type="submit"
-                          >
+                          <button className="btn btn-primary w-100" type="submit">
                             Login
                           </button>
                         </div>
                         <div className="col-6 mt-2 mt-sm-3">
-                          <Link
-                            to="/register"
-                            className="btn btn-primary w-100"
-                          >
+                          <Link to="/register" className="btn btn-primary w-100">
                             Register
                           </Link>
                         </div>
                       </div>
                     </form>
                   </div>
-                  {/* <UseGoogleLogin /> */}
                 </div>
               </div>
             </div>

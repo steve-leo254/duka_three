@@ -31,7 +31,7 @@ const login: React.FC = () => {
       user_password: password,
     };
     try {
-      // const apiUrl = "http://127.0.0.1:5000/login";
+      
       const apiUrl = "http://161.35.148.255:8000/login";
       const response = await axios.post(apiUrl, formContent, {
         headers: {
@@ -42,12 +42,9 @@ const login: React.FC = () => {
       const responseData: ResponseData = response.data;
       console.log("test", responseData);
       localStorage.setItem("token", responseData.access_token);
-      localStorage.setItem("isLoggedIn", true.toString()); //  login status to local storage
-      // setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", true.toString()); 
       navigate("/");
-      // toast.success("Login successfull");
     } catch (error) {
-      // toast.error("An error occured logging in! try again");
       console.error(error);
     }
   };

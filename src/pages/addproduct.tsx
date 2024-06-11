@@ -56,7 +56,7 @@ export default function Addproduct() {
       newProduct.image_url = await handleUpload();
     }
     axios
-      .post<Product[]>("http://127.0.0.1:8000/products", newProduct)
+      .post<Product[]>("http://161.35.148.255:8000/products", newProduct)
       .then((response) => {
         console.log("Product created successfully:", response.data);
       })

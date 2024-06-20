@@ -9,24 +9,27 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import PrivateRoutes from './components/protectedRoute';
 import Sale from './pages/sale';
 import Addproduct from './pages/addproduct';
-import Sidebar from './pages/navbar';
+import Sidebar from './pages/navbar'; // Correct import path
 import Dashboard from './pages/dashboard';
-
-
+import { useState } from 'react';
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const openSidebarToggle = () => setSidebarOpen(!isSidebarOpen);
+
   return (
     <Router>
+      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={openSidebarToggle} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PrivateRoutes />}>
           <Route index element={<Home />} />
-          <Route path='addproduct' element={<Addproduct />}/>
-          <Route path='product' element={<Productlist />}/>
-          <Route path='layout' element={<Layout />}/>
-          <Route path='dashboard' element={<Dashboard />}/>
-          <Route path='sale' element={ <Sale />}/>
-          <Route path="navbar" element={<Sidebar />} />
+          <Route path='addproduct' element={<Addproduct />} />
+          <Route path='product' element={<Productlist />} />
+          <Route path='layout' element={<Layout />} />
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='sale' element={<Sale />} />
         </Route>
         {/* <Route path="/register" element={<Register />} /> */}
       </Routes>

@@ -24,7 +24,7 @@ const productlist: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         };
-        const response = await axios.get<Product[]>('http://161.35.148.255:8000/products', { headers });
+        const response = await axios.get<Product[]>('http://64.225.71.67:8000/products', { headers });
         console.log("kiuuuuuuuu",response)
         setProducts(response.data);
         $(tableRef.current!).DataTable(); 

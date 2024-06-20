@@ -17,7 +17,7 @@ const sale: React.FC = () => {
     useEffect(() => {
         const fetchSales = async () => {
             try {
-                const response = await axios.get<Sale[]>('http://127.0.0.1:8000/sales');
+                const response = await axios.get<Sale[]>('http://64.225.71.67:8000/sales');
                 setSales(response.data);
             } catch (error) {
                 console.error('Error fetching sales:', error);

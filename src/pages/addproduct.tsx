@@ -9,12 +9,13 @@ interface Product {
   image_url?: string;
 }
 
-export default function Addproduct() {
-  const [name, setProductName] = useState("");
-  const [price, setProductPrice] = useState(0);
-  const [stock_quantity, setProductQuantity] = useState(0);
-  const [cost, setCost] = useState(0);
-
+export default function AddProduct() {
+  const [product, setProduct] = useState<Product>({
+    name: "",
+    price: 0,
+    stock_quantity: 0,
+    cost: 0,
+  });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,93 +27,90 @@ export default function Addproduct() {
     }
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) return;
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = event.target;
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [id]: value,
+    }));
+  };
+
+  const handleCreateProduct = async (event: React.FormEvent) => {
+    event.preventDefault();
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("name", product.name);
+    formData.append("price", product.price.toString());
+    formData.append("stock_quantity", product.stock_quantity.toString());
+    formData.append("cost", product.cost.toString());
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/upload/",
-        formData
+        "http://127.0.0.1:8000/products",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
-      console.log("File uploaded successfully:", response.data);
-      return response.data.fileUrl;
+      console.log("Product created successfully:", response.data);
     } catch (error) {
-      console.error("Error uploading file:", error);
-      return null;
+      console.error("Error creating product:", error);
     }
-  };
-
-  const handleCreateProduct = async () => {
-    const newProduct: Product = {
-      name,
-      price,
-      stock_quantity,
-      cost,
-    };
-    if (selectedFile) {
-      newProduct.image_url = await handleUpload();
-    }
-    axios
-      .post<Product[]>("http://161.35.148.255:8000/products", newProduct)
-      .then((response) => {
-        console.log("Product created successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error creating product:", error);
-      });
   };
 
   return (
     <form onSubmit={handleCreateProduct}>
       <div className="mb-3">
-        <label htmlFor="productName" className="form-label">
+        <label htmlFor="name" className="form-label">
           Product name
         </label>
         <input
           type="text"
           className="form-control"
-          id="productName"
-          value={name}
-          onChange={(e) => setProductName(e.target.value)}
+          id="name"
+          value={product.name}
+          onChange={handleInputChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="productPrice" className="form-label">
+        <label htmlFor="price" className="form-label">
           Price
         </label>
         <input
           type="number"
           className="form-control"
-          id="productPrice"
-          value={price}
-          onChange={(e) => setProductPrice(parseFloat(e.target.value))}
+          id="price"
+          value={product.price}
+          onChange={handleInputChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="productQuantity" className="form-label">
+        <label htmlFor="stock_quantity" className="form-label">
           Stock quantity
         </label>
         <input
           type="number"
           className="form-control"
-          id="productQuantity"
-          value={stock_quantity}
-          onChange={(e) => setProductQuantity(parseInt(e.target.value))}
+          id="stock_quantity"
+          value={product.stock_quantity}
+          onChange={handleInputChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="Cost" className="form-label">
+        <label htmlFor="cost" className="form-label">
           Cost
         </label>
         <input
           type="number"
           className="form-control"
-          id="Cost"
-          value={cost}
-          onChange={(e) => setCost(parseInt(e.target.value))}
+          id="cost"
+          value={product.cost}
+          onChange={handleInputChange}
         />
       </div>
       <div className="mb-3">

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Productlist from './pages/product';
-// import Register from './pages/register';
+import Register from './pages/register';
 import Login from './pages/login';
 import Layout from './components/layout';
 import Home from './pages/home';
@@ -31,7 +31,7 @@ function App() {
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='sale' element={<Sale />} />
         </Route>
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );

@@ -2,6 +2,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import 'datatables.net'
 import React, { useState, useEffect, useRef } from 'react';
+import url from '../config';
 
 interface Product {
   id: number;
@@ -24,7 +25,7 @@ const productlist: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         };
-        const response = await axios.get<Product[]>('http://127.0.0.1/:8000/products', { headers });
+        const response = await axios.get<Product[]>(`${url}/product`, { headers });
         console.log("kiuuuuuuuu",response)
         setProducts(response.data);
         $(tableRef.current!).DataTable(); 

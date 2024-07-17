@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import url from "../config";
 
 interface Product {
   name: string;
@@ -49,7 +50,7 @@ export default function AddProduct() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/products",
+        `${url}/products`,
         formData,
         {
           headers: {

@@ -15,6 +15,7 @@ import IconifyIcon from '../components/IconifyIcon';
 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import url from '../config';
 
 interface AuthType {
   user_name: string;
@@ -45,7 +46,7 @@ const Login = () => {
       user_password: user.password,
     };
     try {
-      const apiUrl = "http://127.0.0.1:8000/login";
+      const apiUrl = `${url}/login`;
       const response = await axios.post(apiUrl, formContent, {
         headers: {
           "Content-Type": "application/json",
@@ -149,7 +150,7 @@ const Login = () => {
           align="center"
           letterSpacing={0.5}
         >
-          Don't have an account? <Link to="/signup" style={{ textDecoration: 'none' }}>{'Signup'}</Link>
+          Don't have an account? <Link to="/register" style={{ textDecoration: 'none' }}>{'Signup'}</Link>
         </Typography>
       </Stack>
       <Snackbar

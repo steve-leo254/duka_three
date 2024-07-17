@@ -10,6 +10,7 @@ import Alert from '@mui/material/Alert';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconifyIcon from '../components/IconifyIcon';
 import axios from 'axios';
+import url from '../config';
 
 interface User {
   user_name: string;
@@ -39,7 +40,7 @@ const Signup = () => {
       phone_no: user.phone_no,
     };
     try {
-      const apiUrl = 'http://127.0.0.1:8000/register';
+      const apiUrl = `${url}/register`;
       const response = await axios.post(apiUrl, formContent, {
         headers: {
           'Content-Type': 'application/json',

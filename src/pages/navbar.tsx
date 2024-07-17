@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({ openSidebarToggle, OpenSidebar }) => 
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="/about">
+          <a href="/Drawerlist">
             <BsPeopleFill className='icon'/> About
           </a>
         </li>

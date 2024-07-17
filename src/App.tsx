@@ -9,9 +9,13 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import PrivateRoutes from './components/protectedRoute';
 import Sale from './pages/sale';
 import Addproduct from './pages/addproduct';
-import Sidebar from './pages/navbar'; // Correct import path
+import Sidebar from './pages/navbar';
 import Dashboard from './pages/dashboard';
 import { useState } from 'react';
+import DrawerItems from './components/drawerlist';
+
+import ProfileListItem from './components/list-items/profileListItem';
+
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -28,7 +32,9 @@ function App() {
           <Route path='addproduct' element={<Addproduct />} />
           <Route path='product' element={<Productlist />} />
           <Route path='layout' element={<Layout />} />
+          <Route path='drawerlist' element={<DrawerItems />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='profileListItem' element={<ProfileListItem subheader="Profile" path="/profile" />} />
           <Route path='sale' element={<Sale />} />
         </Route>
         <Route path="/register" element={<Register />} />

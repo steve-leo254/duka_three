@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import 'chart.js/auto';
 import { Line,Bar } from "react-chartjs-2";
-
+import url from "../config";
 
 interface DashboardData {
   date: string;
@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const apiUrl = "http://64.225.71.67:8000/dashboard";
+        const apiUrl = `${url}/dashboard`;
         const accessToken = localStorage.getItem("accessToken");
         if (!accessToken) {
           throw new Error("Access token not found");

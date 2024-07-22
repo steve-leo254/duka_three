@@ -34,6 +34,7 @@ function App() {
           <Route path='layout' element={<Layout />} />
           <Route path='drawerlist' element={<DrawerItems />} />
           <Route path='dashboard' element={<Dashboard />} />
+          
           <Route path='profileListItem' element={<ProfileListItem subheader="Profile" path="/profile" />} />
           <Route path='sale' element={<Sale />} />
         </Route>

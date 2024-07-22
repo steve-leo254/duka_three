@@ -28,12 +28,6 @@ const sitemap: MenuItem[] = [
     active: true,
   },
   {
-    id: 'features',
-    subheader: 'Products',
-    path: 'ProductListitems',
-    icon: 'ic:round-all-inbox',
-  },
-  {
     id: 'Sales',
     subheader: 'Sale',
     path: '#!',
@@ -44,12 +38,6 @@ const sitemap: MenuItem[] = [
     subheader: 'Pricing',
     path: '#!',
     icon: 'mingcute:currency-dollar-2-line',
-  },
-  {
-    id: 'integrations',
-    subheader: 'Integrations',
-    path: '#!',
-    icon: 'mingcute:plugin-2-fill',
   },
   {
     id: 'authentication',

@@ -18,6 +18,7 @@ export default function AddProduct() {
     cost: 0,
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -49,18 +50,22 @@ export default function AddProduct() {
     }
 
     try {
-      const response = await axios.post(
-        `${url}/products`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const token = localStorage.getItem('token');
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      };
+      
+      const response = await axios.post(`${url}/products`, formData, { headers });
       console.log("Product created successfully:", response.data);
+      setError(null); // Clear any previous error
     } catch (error) {
       console.error("Error creating product:", error);
+      if (axios.isAxiosError(error) && error.response) {
+        setError(`Error creating product: ${error.response.statusText}`);
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 
@@ -124,7 +129,7 @@ export default function AddProduct() {
           onChange={handleFileChange}
         />
       </div>
-
+      {error && <div className="alert alert-danger">{error}</div>}
       <button className="btn btn-primary" type="submit">
         Create Product
       </button>
